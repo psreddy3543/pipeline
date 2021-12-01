@@ -1,10 +1,8 @@
 pipeline
 {
     agent any 
-    
     stages
-    {
-     
+    {    
      stage ('compile code')
      {
          steps
@@ -34,10 +32,12 @@ pipeline
          }
      }
     }
-     post {
-        always {
+     post 
+    {
+        always 
+        {
             slackSend channel: '#developer',                
-                message: "Result : ${currentBuild.currentResult}\n Job : ${env.JOB_NAME}\n buildno : ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
+            message: "Result : ${currentBuild.currentResult}\n Job : ${env.JOB_NAME}\n buildno : ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
     }
 }
