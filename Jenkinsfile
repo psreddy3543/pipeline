@@ -30,20 +30,13 @@ pipeline
      {
          steps
          {
-             sh 'cp -R /root/.jenkins/workspace/vikas/target/* /opt/apache-tomcat-8.5.3/webapps'
+             sh 'cp -R /root/.jenkins/workspace/pipeline3/target/* /opt/apache-tomcat-8.5.3/webapps'
          }
      }
-  
-        stage('Slack it'){
-            steps {
-                slackSend channel: '#employee', 
-                          message: 'Hello, world'
-            }
-        } 
     }
      post {
         always {
-            slackSend channel: '#employee',                
+            slackSend channel: '#developer',                
                 message: "Result : ${currentBuild.currentResult}\n Job : ${env.JOB_NAME}\n buildno : ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
     }
